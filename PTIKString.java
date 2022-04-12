@@ -13,23 +13,39 @@ public class PTIKString {
         System.out.println(isNumber('5'));
         System.out.println(toUpper('a'));
         System.out.println(toLower('A'));
+        System.out.println("");
         System.out.println(lowerCase("Universitas Negeri Jakarta"));
         System.out.println(titleCase("frans tamVan pemBerAnI"));
         System.out.println(toggleCase("FrAnS KeCe Dari LAHir"));
+        System.out.println("");
         System.out.println(reverseString1("Universitas"));
         System.out.println(reverseString2("Jakarta"));
+        System.out.println("");
         System.out.println(compareSensitiveString("UNJ", "UNJ"));
         System.out.println(compareInSensitiveString("UNJ", "unj"));
         System.out.println(compareSensitiveString2("PTIKUNJ", "PTIK"));
+        System.out.println("");
         System.out.println(left("PTIKFTUNJ",4));
         System.out.println(right("PTIKFTUNJ",3));
         System.out.println(mid("PTIKFTUNJ",4, 2));
+        System.out.println("");
         System.out.println(isPalindrome("malam"));
         System.out.println(isPalindrome("makan"));
         System.out.println(isPalindrome("kasur nababan rusak"));
         System.out.println(isPalindrome("harum semar kayak rames murah"));
         System.out.println(isPalindrome("ibu ratna malam malam antar ubi"));
-        System.out.println(isAnagram("houmbng", "hombung"));
+        System.out.println("");
+        System.out.println(isAnagram("batu", "tabu"));
+        System.out.println(isAnagram("batu", "tabo"));
+        System.out.println("");
+        System.out.println(isPangram("the quick brown fox jumps over the lazy dog"));
+        System.out.println("");
+        System.out.println(isIsogram("hombing"));
+        System.out.println(isIsogram("himbing"));
+        System.out.println("");
+        System.out.println(cetakGanjilGenap("1g82012as95120123as526"));
+        System.out.println("");
+        System.out.println(countString("kuku kaki ku kaya kuku kaki saya"));
     }
     
     static boolean isUpperCase(char c){// apakah c adalah huruf besar, jika bernilai false apa otomatis c adalah huruf kecil?
@@ -104,7 +120,7 @@ public class PTIKString {
     static String toggleCase (String s){  // mengembalikan string s dengan mengubah huruf kecil menjadi huruf desar dan sebaliknya
         char[] temp = s.toCharArray();
         for(int i = 0;i<temp.length ;i++){
-            if ((temp[i]>='A') && (temp[i]<='Z')) {
+            if (isUpperCase(temp[i])) {
                 temp[i]=toLower(s.charAt(i));
             }
             else
@@ -223,7 +239,7 @@ public class PTIKString {
         return true;
     }
      
-    public static boolean isAnagram(String s1, String s2){
+    public static String isAnagram(String s1, String s2){
     //mengembalikan apakah dua buah string adalah sebuah anagram
         s1 = s1.toLowerCase();
         s2 = s2.toLowerCase();
@@ -236,16 +252,82 @@ public class PTIKString {
 
             boolean result = Arrays.equals(temp1, temp2);
 
-            if(result) return true;
+            if(result) return s1 + "&" + s2 + " Anagram = " + true;
+
         }
-        return false;
+        return s1 + "&" + s2 + " Anagram = " + false;    }
+    
+    public static boolean isPangram(String s1){
+    //mengembalikan apakah sebuah string adalah sebuah pangram
+        s1 = s1.toLowerCase();
+        int len = s1.length();
+        boolean[] hurufList = new boolean[26];
+        int index = 0;
+        int flag = 1;
+
+        char arr[] = s1.toCharArray();
+
+        for (int i = 0; i < len ; i++) {
+            if (isLetter(arr[i])) {
+                index = s1.charAt(i) - 'a';
+            }
+            hurufList[index] = true;
+        }
+        for (int i = 0; i <= 25; i++) {
+            if (hurufList[i] == false)
+                flag = 0;
+        }
+        System.out.print(s1 + " , Pangram = ");
+        if (flag == 1);
+        return true;
     }
-    
-//    public static boolean isPangram(){
-//    //mengembalikan apakah sebuah string adalah sebuah pangram    
-//    }  
-    
-//    public static boolean isIsogram(){
-//    //mengembalikan apakah sebuah string adalah sebuah isogram      
-//    }        
+
+    public static String isIsogram(String s1){
+    //mengembalikan apakah sebuah string adalah sebuah isogram
+        s1 = s1.toLowerCase();
+        int len = s1.length();
+
+        char arr[] = s1.toCharArray();
+
+        Arrays.sort(arr);
+        for (int i = 0; i < len - 1; i++) {
+            if (arr[i] == arr[i + 1]) return s1 + " Isogram = " + false;
+        }
+        return s1 + " Isogram = " + true;
+    }
+
+    public static String cetakGanjilGenap(String s1) {
+        //memisahkan angka ganjil dan genap
+        char arr[] = s1.toCharArray();
+
+        String ganjil ="";
+        String genap  ="";
+        for(int i = 0; i<s1.length(); i++){
+            // kondisi agar hanya angka saja yang di eksekusi
+            if (isNumber(arr[i])) {
+                if (arr[i] % 2 != 0) {
+                    ganjil+=arr[i];
+                }
+                else{
+                    genap+=arr[i];
+                }
+            }
+        }
+        return s1 + " | Ganjil = " + ganjil  + " , Genap = " + genap;
+    }
+
+    public static String countString(String s1) {
+        //menghitung jumlah huruf/angka
+        char arr[] = s1.toCharArray();
+
+        int jumlah = 0;
+        for(int i = 0; i<s1.length(); i++){
+            // kondisi agar tidak ikut menjumlah spasi
+            if (arr[i] != ' ') {
+                    jumlah += 1;
+                }
+            }
+        return "-> " + s1 + "\nCount String = " + jumlah;
+    }
+
 }
