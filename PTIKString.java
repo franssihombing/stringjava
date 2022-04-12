@@ -32,8 +32,6 @@ public class PTIKString {
         System.out.println(isPalindrome("malam"));
         System.out.println(isPalindrome("makan"));
         System.out.println(isPalindrome("kasur nababan rusak"));
-        System.out.println(isPalindrome("harum semar kayak rames murah"));
-        System.out.println(isPalindrome("ibu ratna malam malam antar ubi"));
         System.out.println("");
         System.out.println(isAnagram("batu", "tabu"));
         System.out.println(isAnagram("batu", "tabo"));
@@ -46,6 +44,12 @@ public class PTIKString {
         System.out.println(cetakGanjilGenap("1g82012as95120123as526"));
         System.out.println("");
         System.out.println(countString("kuku kaki ku kaya kuku kaki saya"));
+        System.out.println("");
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("Tugas Mandiri AlPro 03");
+        System.out.println("Fransiscus Sihombing (1512621024)");
+        System.out.println("Pendidikan Teknik Informatika dan Komputer");
+        System.out.println("-----------------------------------------------------------------------------");
     }
     
     static boolean isUpperCase(char c){// apakah c adalah huruf besar, jika bernilai false apa otomatis c adalah huruf kecil?
